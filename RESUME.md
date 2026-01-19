@@ -49,9 +49,9 @@ Software developer with 12+ years of experience specializing in backend systems 
 
 ## Skills
 
-- **Languages**: Java, PHP, JavaScript, SQL, C++, Python
-- **Frameworks/Tech**: Spring, Hibernate, Symfony, React, Astro, Node.js, Tailwind, Docker
-- **Data/Tools**: MongoDB, Apache Ignite, RabbitMQ, MySql, Redis, AWS, Jenkins, TeamCity
+- **Languages**: Java, Kotlin, Python, JavaScript, SQL, PHP, C++, Dart
+- **Frameworks/Tech**: React, Next.js, Astro, Tailwind CSS, Spring, Hibernate, Symfony, Node.js, Docker
+- **Platforms/Tools**: AWS, GCP, MongoDB, Apache Ignite, RabbitMQ, MySql, Redis, Jenkins, TeamCity
 
 ## Education
 
