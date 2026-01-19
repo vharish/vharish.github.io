@@ -1,7 +1,7 @@
 # Venkata Harish
 **Software Engineer**  
 Bangalore, India | (91) 7204477546 | [i.v.harish@gmail.com](mailto:i.v.harish@gmail.com)  
-[GitHub](https://github.com/vharish) | [LinkedIn](https://linkedin.com/in/vharish)
+[GitHub](https://github.com/vharish) | [LinkedIn](https://www.linkedin.com/in/vharishh/)
 
 ---
 
