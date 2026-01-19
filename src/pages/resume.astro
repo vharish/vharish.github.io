@@ -11,26 +11,28 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={`Resume | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
 			@media print {
-				/* Hide non-resume elements */
+				/* 1. Global Print Reset */
 				header:not(.resume-header), 
 				footer, 
 				.print-hidden {
 					display: none !important;
 				}
 
-				/* Reset margins for print */
 				@page {
-					margin: 2cm;
+					margin: 1.5cm;
+					size: auto;
 				}
 
 				body {
 					background-color: white !important;
-					-webkit-print-color-adjust: exact;
-					print-color-adjust: exact;
+					color: black !important;
+					font-size: 10pt; /* Standard resume font size */
 				}
 
+				/* 2. Container Optimization */
 				main {
 					padding: 0 !important;
+					margin: 0 !important;
 					max-width: none !important;
 					width: 100% !important;
 				}
@@ -43,31 +45,52 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					width: 100% !important;
 				}
 
-				/* Fix text wrapping and layout */
-				.grid {
-					display: block !important;
+				/* 3. Header Compression */
+				.resume-header {
+					border-bottom-width: 2px !important;
+					margin-bottom: 1.5rem !important;
+					padding-bottom: 1rem !important;
 				}
 
-				.grid > div {
-					margin-bottom: 2rem;
+				.resume-header h1 {
+					font-size: 24pt !important;
+					margin-bottom: 0 !important;
 				}
 
-				/* Ensure timeline lines are visible */
-				.before\:bg-slate-200::before {
-					background-color: #e2e8f0 !important;
-				}
-
-				.bg-accent {
-					background-color: #2337ff !important;
-				}
-
-				/* Avoid breaking sections across pages */
+				/* 4. Layout & Flow Fixes (Crucial) */
 				section {
-					page-break-inside: avoid;
+					page-break-inside: auto !important; /* Allow section to split */
+					margin-bottom: 1.5rem !important;
 				}
 
-				h2, h3 {
+				/* individual items should not split */
+				.experience-item {
+					page-break-inside: avoid !important;
+					margin-bottom: 1.25rem !important;
+				}
+
+				h2 {
+					border-bottom: 1px solid #eee;
+					padding-bottom: 2px;
+					margin-bottom: 0.75rem !important;
 					page-break-after: avoid;
+				}
+
+				/* 5. Typography */
+				.text-slate-700, .text-slate-600 {
+					color: #333 !important;
+				}
+
+				.text-accent {
+					color: #2337ff !important;
+					font-weight: 600 !important;
+				}
+
+				/* 6. Skills Grid Fix */
+				.skills-edu-grid {
+					display: grid !important;
+					grid-template-columns: 1fr 1fr !important;
+					gap: 2rem !important;
 				}
 			}
 		</style>
@@ -105,8 +128,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					
 					<div class="space-y-10">
 						<!-- Current -->
-						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-accent ring-4 ring-white"></div>
+						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-accent ring-4 ring-white print:ring-0"></div>
 							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
 								<h3 class="text-lg font-bold text-slate-900">Independent Projects</h3>
 								<span class="text-sm font-medium text-slate-500">Aug 2024 — Present</span>
@@ -124,8 +147,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</div>
 
 						<!-- Google -->
-						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
 							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
 								<h3 class="text-lg font-bold text-slate-900">Google India</h3>
 								<span class="text-sm font-medium text-slate-500">June 2020 — Aug 2024</span>
@@ -138,8 +161,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</div>
 
 						<!-- Stockopedia -->
-						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
 							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
 								<h3 class="text-lg font-bold text-slate-900">Stockopedia Technologies</h3>
 								<span class="text-sm font-medium text-slate-500">Nov 2017 — May 2020</span>
@@ -153,8 +176,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</div>
 
 						<!-- Practo -->
-						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
 							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
 								<h3 class="text-lg font-bold text-slate-900">Practo Technologies</h3>
 								<span class="text-sm font-medium text-slate-500">March 2015 — Oct 2017</span>
@@ -168,10 +191,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</div>
 
 						<!-- VIA.com -->
-						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
 							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">VIA.com (FlightRaja Travels)</h3>
+								<h3 class="text-lg font-bold text-slate-900">VIA.com</h3>
 								<span class="text-sm font-medium text-slate-500">Nov 2013 — June 2014</span>
 							</div>
 							<p class="text-sm font-bold text-accent mb-2">Software Engineer</p>
@@ -182,8 +205,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</div>
 
 						<!-- Tavant -->
-						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
 							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
 								<h3 class="text-lg font-bold text-slate-900">Tavant Technologies</h3>
 								<span class="text-sm font-medium text-slate-500">Aug 2012 — Sept 2013</span>
@@ -192,13 +215,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
 								<li>Worked as a Full Stack developer on a Campaign Management system using Spring, Hibernate, and Marionette.js.</li>
 								<li>Designed and implemented both backend and frontend systems from scratch.</li>
-								<li>Successfully configured Jenkins for continuous integration and build automation.</li>
 							</ul>
 						</div>
 					</div>
 				</section>
 
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+				<div class="skills-edu-grid grid grid-cols-1 md:grid-cols-2 gap-10">
 					<!-- Skills -->
 					<section>
 						<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Skills</h2>
