@@ -1,0 +1,123 @@
+/* Professional Resume Stylesheet for mdpdf - Minimalist Black Version */
+
+:root {
+    --accent-color: #000000;
+    --text-color: #1a202c;
+    --muted-color: #4a5568;
+    --border-color: #000000;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.5;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+h1 {
+    font-size: 26pt;
+    margin-bottom: 0;
+    color: var(--text-color);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+}
+
+/* The role subtitle */
+h1 + p {
+    font-size: 12pt;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-top: 2pt;
+    margin-bottom: 8pt;
+}
+
+/* Contact Info Line */
+h1 + p + p {
+    font-size: 9pt;
+    color: var(--muted-color);
+    border-bottom: 1.5pt solid var(--border-color);
+    padding-bottom: 10pt;
+    margin-bottom: 18pt;
+}
+
+h2 {
+    font-size: 11pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-color);
+    border-bottom: 0.5pt solid #cbd5e0;
+    padding-bottom: 3pt;
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 10.5pt;
+    margin-bottom: 1pt;
+    margin-top: 12pt;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* Company and Date alignment */
+h3 + p {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    margin-bottom: 4pt;
+    font-size: 9pt;
+}
+
+h3 + p strong {
+    color: var(--text-color);
+}
+
+h3 + p em {
+    color: var(--muted-color);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Lists */
+ul {
+    margin-top: 0;
+    padding-left: 12pt;
+}
+
+li {
+    margin-bottom: 3pt;
+    color: #2d3748;
+}
+
+li strong {
+    color: var(--text-color);
+}
+
+/* Education Section */
+.edu-meta {
+    color: var(--muted-color);
+}
+
+/* Skills Section */
+.skills-list {
+    margin-bottom: 8pt;
+}
+
+/* Page Break logic */
+.page-break {
+    page-break-after: always;
+}
+
+hr {
+    display: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
