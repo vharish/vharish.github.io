@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #2337ff;
+  --color-accent-dark: #000d8a;
+}
+
+:root {
+	--accent: #2337ff;
+	--accent-dark: #000d8a;
+}
+
+@layer base {
+	body {
+		@apply bg-slate-50 text-slate-900 antialiased;
+		font-family: "Inter", system-ui, sans-serif;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-bold text-slate-900 tracking-tight;
+	}
+}
+
+/* Custom transitions or other non-Tailwind logic if needed */
+.prose {
+	@apply max-w-none;
+}

@@ -1,0 +1,64 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-slate-50">
+		<Header />
+		<main class="max-w-4xl mx-auto px-4 py-16 sm:py-24">
+			<section class="space-y-8">
+				<div class="space-y-4">
+					<h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
+						Hi, I'm Harish <span class="text-accent">👋</span>
+					</h1>
+					<p class="text-xl text-slate-600 max-w-2xl leading-relaxed">
+						I'm a software engineer and designer passionate about building beautiful, functional, and user-centric digital experiences. 
+						Currently focusing on modern web technologies and minimalist design.
+					</p>
+				</div>
+
+				<div class="flex flex-wrap gap-4 pt-4">
+					<a href="/blog" class="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">
+						Read my blog
+					</a>
+					<a href="/about" class="px-6 py-3 bg-white text-slate-900 font-medium rounded-lg border border-slate-200 hover:border-slate-300 transition-colors">
+						About me
+					</a>
+				</div>
+			</section>
+
+			<section class="mt-24 space-y-12">
+				<div class="border-b border-slate-200 pb-4">
+					<h2 class="text-2xl font-bold">Latest Projects</h2>
+				</div>
+				
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					{[1, 2].map((i) => (
+						<div class="group relative bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-xl transition-all duration-300">
+							<div class="aspect-video bg-slate-100 rounded-lg mb-4 overflow-hidden">
+								<div class="w-full h-full flex items-center justify-center text-slate-400 group-hover:scale-105 transition-transform duration-300">
+									Project Placeholder {i}
+								</div>
+							</div>
+							<h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">Amazing Project {i}</h3>
+							<p class="text-slate-600 text-sm mb-4">
+								A brief description of this incredible project and the impact it had. Built with Astro and Tailwind CSS.
+							</p>
+							<a href="#" class="text-sm font-semibold text-accent inline-flex items-center gap-1">
+								View project <span class="group-hover:translate-x-1 transition-transform">→</span>
+							</a>
+						</div>
+					))}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
