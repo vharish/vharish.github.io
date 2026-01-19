@@ -20,7 +20,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					</h1>
 					<p class="text-xl text-slate-600 max-w-2xl leading-relaxed">
 						A Software Engineer with 12+ years of experience based in <strong>Bangalore</strong>. 
-						Currently building the future of mobile experiences at <strong>Google</strong>.
+						Currently building <strong>AI-powered SaaS</strong> and modular business systems.
 					</p>
 					<div class="flex items-center gap-4 text-sm text-slate-500">
 						<span>📍 Bangalore, India</span>
@@ -41,39 +41,52 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			<section class="mt-24 space-y-8">
 				<div class="border-b border-slate-200 pb-4">
-					<h2 class="text-2xl font-bold">Core Expertise</h2>
+					<h2 class="text-2xl font-bold">Current Focus</h2>
 				</div>
-				<div class="flex flex-wrap gap-3">
-					{[
-						'Backend Systems', 'Mobile Extensions', 'Java', 'PHP', 
-						'Distributed Systems', 'Cloud Infrastructure', 'API Design', 
-						'Team Leadership'
-					].map((skill) => (
-						<span class="px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium hover:border-accent transition-colors">
-							{skill}
-						</span>
-					))}
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
+						<div class="text-accent mb-2">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+							</svg>
+						</div>
+						<h3 class="text-lg font-bold mb-2">AI Content SaaS</h3>
+						<p class="text-slate-600 text-sm leading-relaxed">
+							Building a content creation platform leveraging advanced AI technologies to streamline digital production.
+						</p>
+					</div>
+					<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
+						<div class="text-accent mb-2">
+							<svg xmlns="http://www.w3.org/2000/000svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						</div>
+						<h3 class="text-lg font-bold mb-2">Business Rule Engine</h3>
+						<p class="text-slate-600 text-sm leading-relaxed">
+							Developing a modular rule engine for a post-sales customer success web application.
+						</p>
+					</div>
 				</div>
 			</section>
 
 			<section class="mt-24 space-y-12">
 				<div class="border-b border-slate-200 pb-4">
-					<h2 class="text-2xl font-bold">Experience Highlights</h2>
+					<h2 class="text-2xl font-bold">Past Experience</h2>
 				</div>
 				
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-					<div class="bg-white p-6 rounded-2xl border border-slate-200">
-						<h3 class="text-lg font-bold mb-1">Google</h3>
-						<p class="text-sm text-accent mb-4 font-medium">Software Engineer</p>
-						<p class="text-slate-600 text-sm leading-relaxed">
-							Working on Gemini Mobile application and Google Assistant across Headsets and Android TV.
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-400">
+					<div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
+						<h3 class="text-lg font-bold mb-1 text-slate-600">Google</h3>
+						<p class="text-sm mb-4 font-medium">Software Engineer (2020-2025)</p>
+						<p class="text-sm leading-relaxed">
+							Gemini Mobile and Google Assistant engineering.
 						</p>
 					</div>
-					<div class="bg-white p-6 rounded-2xl border border-slate-200">
-						<h3 class="text-lg font-bold mb-1">Stockopedia</h3>
-						<p class="text-sm text-accent mb-4 font-medium">Senior Software Engineer</p>
-						<p class="text-slate-600 text-sm leading-relaxed">
-							Architected and built the backend for the Stockopedia App ground-up.
+					<div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
+						<h3 class="text-lg font-bold mb-1 text-slate-600">Stockopedia</h3>
+						<p class="text-sm mb-4 font-medium">Senior Software Engineer</p>
+						<p class="text-sm leading-relaxed">
+							Full-stack architecture for investment platforms.
 						</p>
 					</div>
 				</div>
