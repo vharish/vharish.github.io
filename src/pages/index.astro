@@ -1,13 +1,12 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import resumeData from '../data/resume.json';
 
-const { basics, work } = resumeData;
-const currentWork = work.filter(j => j.endDate === 'Present')[0];
-const pastWork = work.filter(j => j.endDate !== 'Present').slice(0, 2);
+const resumeEntry = await getEntry('resume', 'me');
+const basics = resumeEntry.data;
 ---
 
 <!doctype html>
@@ -35,8 +34,8 @@ const pastWork = work.filter(j => j.endDate !== 'Present').slice(0, 2);
 				</div>
 
 				<div class="flex flex-wrap gap-4 pt-4">
-					<a href="/resume" class="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">
-						View Resume
+					<a href="/cv" class="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">
+						View CV
 					</a>
 					<a href="/blog" class="px-6 py-3 bg-white text-slate-900 font-medium rounded-lg border border-slate-200 hover:border-slate-300 transition-colors">
 						Read Blog
@@ -49,43 +48,28 @@ const pastWork = work.filter(j => j.endDate !== 'Present').slice(0, 2);
 					<h2 class="text-2xl font-bold">Current Focus</h2>
 				</div>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-					{currentWork.highlights.map((h, i) => (
-						<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
-							<div class="text-accent mb-2">
-								{i === 0 ? (
-									<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-									</svg>
-								) : (
-									<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-									</svg>
-								)}
-							</div>
-							<h3 class="text-lg font-bold mb-2">{h.split(':')[0]}</h3>
-							<p class="text-slate-600 text-sm leading-relaxed">
-								{h.split(':')[1]}
-							</p>
+					<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
+						<div class="text-accent mb-2">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+							</svg>
 						</div>
-					))}
-				</div>
-			</section>
-
-			<section class="mt-24 space-y-12">
-				<div class="border-b border-slate-200 pb-4">
-					<h2 class="text-2xl font-bold">Past Experience</h2>
-				</div>
-				
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-400">
-					{pastWork.map(job => (
-						<div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
-							<h3 class="text-lg font-bold mb-1 text-slate-600">{job.company}</h3>
-							<p class="text-sm mb-4 font-medium">{job.position} ({job.startDate.split(' ')[1] || job.startDate}-{job.endDate.split(' ')[1] || job.endDate})</p>
-							<p class="text-sm leading-relaxed">
-								{job.highlights[0].split(':')[0]}...
-							</p>
+						<h3 class="text-lg font-bold mb-2">AI Content SaaS</h3>
+						<p class="text-slate-600 text-sm leading-relaxed">
+							Building a content creation platform leveraging advanced AI technologies to automate and enhance digital production.
+						</p>
+					</div>
+					<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
+						<div class="text-accent mb-2">
+							<svg xmlns="http://www.w3.org/2000/000svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
 						</div>
-					))}
+						<h3 class="text-lg font-bold mb-2">Business Rule Engine</h3>
+						<p class="text-slate-600 text-sm leading-relaxed">
+							Developing a modular rule engine for a post-sales customer success web application.
+						</p>
+					</div>
 				</div>
 			</section>
 		</main>
