@@ -9,13 +9,75 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={`Resume | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			@media print {
+				/* Hide non-resume elements */
+				header:not(.resume-header), 
+				footer, 
+				.print-hidden {
+					display: none !important;
+				}
+
+				/* Reset margins for print */
+				@page {
+					margin: 2cm;
+				}
+
+				body {
+					background-color: white !important;
+					-webkit-print-color-adjust: exact;
+					print-color-adjust: exact;
+				}
+
+				main {
+					padding: 0 !important;
+					max-width: none !important;
+					width: 100% !important;
+				}
+
+				.resume-container {
+					box-shadow: none !important;
+					border: none !important;
+					padding: 0 !important;
+					margin: 0 !important;
+					width: 100% !important;
+				}
+
+				/* Fix text wrapping and layout */
+				.grid {
+					display: block !important;
+				}
+
+				.grid > div {
+					margin-bottom: 2rem;
+				}
+
+				/* Ensure timeline lines are visible */
+				.before\:bg-slate-200::before {
+					background-color: #e2e8f0 !important;
+				}
+
+				.bg-accent {
+					background-color: #2337ff !important;
+				}
+
+				/* Avoid breaking sections across pages */
+				section {
+					page-break-inside: avoid;
+				}
+
+				h2, h3 {
+					page-break-after: avoid;
+				}
+			}
+		</style>
 	</head>
 	<body class="bg-slate-50 print:bg-white">
-		<Header />
+		<Header class="print:hidden" />
 		<main class="max-w-4xl mx-auto px-4 py-16 print:py-0 print:px-0">
-			<div class="bg-white p-8 sm:p-12 shadow-sm border border-slate-200 rounded-2xl print:shadow-none print:border-none print:p-0">
+			<div class="resume-container bg-white p-8 sm:p-12 shadow-sm border border-slate-200 rounded-2xl print:shadow-none print:border-none print:p-0">
 				<!-- Header -->
-				<header class="border-b border-slate-200 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+				<header class="resume-header border-b border-slate-200 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
 					<div>
 						<h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">{SITE_TITLE}</h1>
 						<p class="text-xl text-accent font-medium mt-1">Software Engineer</p>
@@ -179,7 +241,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 				
 				<!-- Print Action -->
-				<div class="mt-12 pt-8 border-t border-slate-100 text-center print:hidden">
+				<div class="mt-12 pt-8 border-t border-slate-100 text-center print:hidden print-hidden">
 					<button onclick="window.print()" class="text-sm font-bold text-accent hover:text-accent-dark transition-colors inline-flex items-center gap-2">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -189,6 +251,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 			</div>
 		</main>
-		<Footer />
+		<Footer class="print:hidden" />
 	</body>
 </html>
