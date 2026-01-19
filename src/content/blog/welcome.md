@@ -1,23 +1,18 @@
 ---
-title: 'Welcome to my new site!'
-description: 'Migration from Jekyll to Astro 5.0'
-pubDate: 'Jan 19 2026'
-heroImage: '../../assets/blog-placeholder-1.jpg'
+title: 'Welcome to my space'
+description: 'What to expect from this blog: software, AI, and the craft of building.'
+pubDate: 'Jan 01 2026'
 ---
 
-Welcome to the first post on my new portfolio site! 
+Welcome! I'm Harish, and this is where I document my journey as a software engineer and creator. 
 
-I've recently migrated my personal website from an older Jekyll setup to a modern stack using **Astro 5.0** and **Tailwind CSS 4.0**. This change brings significant improvements in performance, developer experience, and design flexibility.
+After 12 years of building systems at companies like Google and Practo, I've shifted my focus toward independent projects that leverage AI and modular architecture. I created this space to share the high-fidelity lessons I've learned along the way.
 
-### Why Astro?
+### What to expect here:
 
-Astro is a modern web framework that pulls the best parts of different technologies together. Its "Islands Architecture" allows me to build a highly performant static site while still having the flexibility to add interactive components where needed.
+- **Technical Deep Dives**: Moving beyond "Hello World" to solve real-world architectural problems (like the [Hydration Bottleneck](/blog/data-aware-rule-engines)).
+- **AI Exploration**: Practical insights into integrating Neural Networks into deterministic business logic.
+- **The Craft of Software**: Thoughts on minimalism, developer experience, and the intersection of technology and design.
+- **Beyond the Code**: Occasional diversions into electronic music, nature, and whatever else is fueling my creativity.
 
-### What to expect
-
-On this blog, I'll be sharing:
-- Tutorials on web development.
-- Insights into UI/UX design.
-- Updates on my personal projects.
-
-Thanks for stopping by!
+Thanks for being here. I hope you find something useful.

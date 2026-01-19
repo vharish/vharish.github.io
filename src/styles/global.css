@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-accent: #2337ff;
@@ -21,7 +22,7 @@
 	}
 }
 
-/* Custom transitions or other non-Tailwind logic if needed */
+/* Ensure prose applies correctly to the container */
 .prose {
 	@apply max-w-none;
 }
