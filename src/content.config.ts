@@ -19,7 +19,7 @@ const resume = defineCollection({
 		name: z.string(),
 		label: z.string(),
 		email: z.string(),
-		phone: z.string(),
+		phone: z.string().optional(),
 		location: z.string(),
 		summary: z.string(),
 		profiles: z.array(z.object({

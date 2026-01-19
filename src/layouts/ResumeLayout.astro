@@ -13,7 +13,7 @@ const { frontmatter } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`CV | ${frontmatter.name}`} description={`Resume of ${frontmatter.name}`} />
+		<BaseHead title={`Resume | ${frontmatter.name}`} description={`Resume of ${frontmatter.name}`} />
 		<style>
 			:root {
 				--bg-white: #ffffff;
@@ -184,7 +184,7 @@ const { frontmatter } = Astro.props;
 				<section>
 					<h2>Contact</h2>
 					<div class="contact-item"><strong>Email</strong>{frontmatter.email}</div>
-					<div class="contact-item"><strong>Phone</strong>{frontmatter.phone}</div>
+					{frontmatter.phone && <div class="contact-item"><strong>Phone</strong>{frontmatter.phone}</div>}
 					<div class="contact-item"><strong>Location</strong>{frontmatter.location}</div>
 					<div class="contact-item"><strong>Links</strong>
 						{frontmatter.profiles.map(p => (
