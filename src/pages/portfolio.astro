@@ -1,0 +1,71 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const projects = [
+	{
+		title: "AI Content SaaS",
+		description: "An end-to-end platform for automated digital content production using LLMs. Built with Next.js, OpenAI API, and PostgreSQL.",
+		tags: ["Next.js", "AI", "SaaS"],
+		link: "#"
+	},
+	{
+		title: "Data-Aware Rule Engine",
+		description: "A modular business logic engine layered over GraphQL to solve the hydration bottleneck in customer success platforms.",
+		tags: ["Architecture", "GraphQL", "Rule Engine"],
+		link: "/blog/data-aware-rule-engines"
+	},
+	{
+		title: "Google Assistant: Headsets",
+		description: "Engineered spoken notification features for millions of headset users globally, focusing on low-latency audio processing.",
+		tags: ["C++", "Mobile", "Embedded"],
+		link: "#"
+	},
+	{
+		title: "Stockopedia Core Backend",
+		description: "Refactored the financial reporting engine to handle high-concurrency data ingestion and real-time report generation.",
+		tags: ["Java", "PHP", "FinTech"],
+		link: "#"
+	}
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Portfolio | ${SITE_TITLE}`} description="Selected projects and engineering work." />
+	</head>
+	<body class="bg-slate-50">
+		<Header />
+		<main class="max-w-4xl mx-auto px-4 py-16">
+			<header class="mb-16">
+				<h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl mb-4 text-center">Portfolio</h1>
+				<p class="text-lg text-slate-600 text-center max-w-xl mx-auto leading-relaxed">
+					A collection of systems, applications, and experiments built over 12+ years of software engineering.
+				</p>
+			</header>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				{projects.map((project) => (
+					<div class="group bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300">
+						<div class="flex flex-wrap gap-2 mb-4">
+							{project.tags.map(tag => (
+								<span class="text-[10px] uppercase tracking-widest font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">{tag}</span>
+							))}
+						</div>
+						<h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-accent transition-colors">{project.title}</h3>
+						<p class="text-slate-600 text-sm leading-relaxed mb-6">
+							{project.description}
+						</p>
+						<a href={project.link} class="text-sm font-bold inline-flex items-center gap-1 text-accent">
+							Learn more <span class="group-hover:translate-x-1 transition-transform">→</span>
+						</a>
+					</div>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
