@@ -3,6 +3,11 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import resumeData from '../data/resume.json';
+
+const { basics, work } = resumeData;
+const currentWork = work.filter(j => j.endDate === 'Present')[0];
+const pastWork = work.filter(j => j.endDate !== 'Present').slice(0, 2);
 ---
 
 <!doctype html>
@@ -16,16 +21,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<section class="space-y-8">
 				<div class="space-y-4">
 					<h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
-						Hi, I'm {SITE_TITLE} <span class="text-accent">👋</span>
+						Hi, I'm {basics.name} <span class="text-accent">👋</span>
 					</h1>
 					<p class="text-xl text-slate-600 max-w-2xl leading-relaxed">
-						A Software Engineer with 12+ years of experience based in <strong>Bangalore</strong>. 
+						{basics.label} with 12+ years of experience based in <strong>{basics.location.split(',')[0]}</strong>. 
 						Currently building <strong>AI-powered SaaS</strong> and modular business systems.
 					</p>
 					<div class="flex items-center gap-4 text-sm text-slate-500">
-						<span>📍 Bangalore, India</span>
+						<span>📍 {basics.location}</span>
 						<span>•</span>
-						<a href="mailto:i.v.harish@gmail.com" class="hover:text-accent">i.v.harish@gmail.com</a>
+						<a href={`mailto:${basics.email}`} class="hover:text-accent">{basics.email}</a>
 					</div>
 				</div>
 
@@ -44,28 +49,25 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					<h2 class="text-2xl font-bold">Current Focus</h2>
 				</div>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-					<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
-						<div class="text-accent mb-2">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-							</svg>
+					{currentWork.highlights.map((h, i) => (
+						<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
+							<div class="text-accent mb-2">
+								{i === 0 ? (
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+									</svg>
+								) : (
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+									</svg>
+								)}
+							</div>
+							<h3 class="text-lg font-bold mb-2">{h.split(':')[0]}</h3>
+							<p class="text-slate-600 text-sm leading-relaxed">
+								{h.split(':')[1]}
+							</p>
 						</div>
-						<h3 class="text-lg font-bold mb-2">AI Content SaaS</h3>
-						<p class="text-slate-600 text-sm leading-relaxed">
-							Building a content creation platform leveraging advanced AI technologies to streamline digital production.
-						</p>
-					</div>
-					<div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-accent transition-colors">
-						<div class="text-accent mb-2">
-							<svg xmlns="http://www.w3.org/2000/000svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-							</svg>
-						</div>
-						<h3 class="text-lg font-bold mb-2">Business Rule Engine</h3>
-						<p class="text-slate-600 text-sm leading-relaxed">
-							Developing a modular rule engine for a post-sales customer success web application.
-						</p>
-					</div>
+					))}
 				</div>
 			</section>
 
@@ -75,20 +77,15 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				</div>
 				
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-400">
-					<div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
-						<h3 class="text-lg font-bold mb-1 text-slate-600">Google</h3>
-						<p class="text-sm mb-4 font-medium">Software Engineer (2020-2024)</p>
-						<p class="text-sm leading-relaxed">
-							Gemini Mobile and Google Assistant engineering.
-						</p>
-					</div>
-					<div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
-						<h3 class="text-lg font-bold mb-1 text-slate-600">Stockopedia</h3>
-						<p class="text-sm mb-4 font-medium">Senior Software Engineer</p>
-						<p class="text-sm leading-relaxed">
-							Full-stack architecture for investment platforms.
-						</p>
-					</div>
+					{pastWork.map(job => (
+						<div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
+							<h3 class="text-lg font-bold mb-1 text-slate-600">{job.company}</h3>
+							<p class="text-sm mb-4 font-medium">{job.position} ({job.startDate.split(' ')[1] || job.startDate}-{job.endDate.split(' ')[1] || job.endDate})</p>
+							<p class="text-sm leading-relaxed">
+								{job.highlights[0].split(':')[0]}...
+							</p>
+						</div>
+					))}
 				</div>
 			</section>
 		</main>

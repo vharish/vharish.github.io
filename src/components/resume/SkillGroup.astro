@@ -1,0 +1,19 @@
+---
+interface Props {
+	name: string;
+	keywords: string[];
+}
+
+const { name, keywords } = Astro.props;
+---
+
+<div class="break-inside-avoid mb-4">
+	<h4 class="text-xs font-bold text-slate-900 uppercase mb-2 tracking-wider">{name}</h4>
+	<div class="flex flex-wrap gap-2">
+		{keywords.map(skill => (
+			<span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs print:border print:border-slate-100">
+				{skill}
+			</span>
+		))}
+	</div>
+</div>

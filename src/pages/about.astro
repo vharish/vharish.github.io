@@ -1,95 +1,60 @@
 ---
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import Layout from '../layouts/BlogPost.astro';
+import resumeData from '../data/resume.json';
+
+const { basics, work, education, skills } = resumeData;
 ---
 
 <Layout
 	title="About Me"
-	description="Professional background and experience of Venkata Harish"
+	description={`Professional background of ${basics.name}`}
 	pubDate={new Date('January 19 2026')}
 	heroImage={AboutHeroImage}
 >
-	<p>
-		I am a Software Developer based in Bangalore with over 12 years of experience. While my core expertise lies in backend development, I have consistently worked across frontend and mobile technologies throughout my career.
-	</p>
-
-	<p>
-		Currently, I am focused on building independent projects that leverage AI and solve complex business logic challenges.
-	</p>
+	<p>{basics.summary}</p>
 
 	<h2>Current Projects</h2>
 	<div class="space-y-6">
-		<div>
-			<h3 class="mb-1">Content Creation SaaS (AI)</h3>
-			<p class="text-slate-600">Developing a comprehensive SaaS application that leverages modern AI technologies to automate and enhance digital content production.</p>
-		</div>
-		<div>
-			<h3 class="mb-1">Business Rule Engine</h3>
-			<p class="text-slate-600">Architecting and implementing a modular, scalable business rule engine for a post-sales customer success web application.</p>
-		</div>
+		{work.filter(j => j.endDate === 'Present').map(job => (
+			<div>
+				<h3 class="mb-1">{job.company}</h3>
+				<ul class="list-none pl-0">
+					{job.highlights.map(h => <li class="mb-2 text-slate-600">{h}</li>)}
+				</ul>
+			</div>
+		))}
 	</div>
 
 	<h2>Experience</h2>
-
 	<div class="space-y-8 mt-8">
-		<div>
-			<h3 class="mb-0">Google India</h3>
-			<p class="text-sm text-slate-500 mt-0">Software Engineer | June 2020 – Aug 2024</p>
-			<ul>
-				<li><strong>Gemini Extensions:</strong> Developed features for the Gemini mobile application, focusing on new feature support, performance optimization, and quality/release pipelines.</li>
-				<li><strong>Google Assistant:</strong> Designed and developed features across devices, including Spoken Notifications for headsets and Media Search for 3rd Party TVs. Led app upgrades and refactors for Assistant on Android TV.</li>
-			</ul>
-		</div>
-
-		<div>
-			<h3 class="mb-0">Stockopedia Technologies</h3>
-			<p class="text-sm text-slate-500 mt-0">Senior Software Engineer | Nov 2017 – May 2020</p>
-			<ul>
-				<li>Built the backend for the new Stockopedia App from the ground up using Java and PHP.</li>
-				<li>Implemented core modules: StockReports, Portfolios, Alerts, News, and more.</li>
-				<li>Managed CI/CD pipelines using TeamCity and Docker.</li>
-			</ul>
-		</div>
-
-		<div>
-			<h3 class="mb-0">Practo Technologies</h3>
-			<p class="text-sm text-slate-500 mt-0">Lead / Senior Software Engineer | Nov 2015 – Oct 2017</p>
-			<ul>
-				<li>Led the Appointment Booking System backend team, providing mentorship and technical guidance.</li>
-				<li>Developed the Doctor/Hospital calling system with the Virtual Number team.</li>
-				<li>Integrated payment systems and led the Qikwell-Practo integration.</li>
-			</ul>
-		</div>
-
-		<div>
-			<h3 class="mb-0">VIA.com (FlightRaja Travels)</h3>
-			<p class="text-sm text-slate-500 mt-0">Software Engineer | Nov 2013 – June 2014</p>
-			<ul>
-				<li>Worked on Indonesian flight booking systems, integrating 3rd party APIs for search, bookings, and payments.</li>
-				<li>Implemented web scrapers for real-time search and booking functionalities.</li>
-			</ul>
-		</div>
-
-		<div>
-			<h3 class="mb-0">Tavant Technologies</h3>
-			<p class="text-sm text-slate-500 mt-0">Software Engineer | Aug 2012 – Sept 2013</p>
-			<ul>
-				<li>Full-stack developer for a Campaign Management system using Spring, Hibernate, and Marionette.js.</li>
-				<li>Designed and implemented both backend and frontend systems from scratch.</li>
-			</ul>
-		</div>
+		{work.filter(j => j.endDate !== 'Present').map(job => (
+			<div>
+				<h3 class="mb-0">{job.company}</h3>
+				<p class="text-sm text-slate-500 mt-0">{job.position} | {job.startDate} – {job.endDate}</p>
+				<ul>
+					{job.highlights.map(h => <li set:html={h}></li>)}
+				</ul>
+			</div>
+		))}
 	</div>
 
 	<h2>Education</h2>
 	<ul>
-		<li><strong>M.Tech in Computer Science (Information Security)</strong><br/>National Institute of Technology (NIT), Calicut | 2010 – 2012</li>
-		<li><strong>B.Tech in Information Technology</strong><br/>Swarnandhra College of Engg and Tech | 2005 – 2009</li>
+		{education.map(edu => (
+			<li>
+				<strong>{edu.studyType} in {edu.area}</strong><br/>
+				{edu.institution} | {edu.startDate} – {edu.endDate}
+			</li>
+		))}
 	</ul>
 
 	<h2>Skills</h2>
-	<p>
-		<strong>Languages:</strong> Java, SQL, JavaScript, PHP, C++, Python<br/>
-		<strong>Frameworks:</strong> Spring, Hibernate, Symfony, Doctrine, React, Astro, Tailwind CSS<br/>
-		<strong>Tools:</strong> Docker, TeamCity, Jenkins, MongoDB, RabbitMQ, MySql
-	</p>
+	<div class="space-y-2">
+		{skills.map(group => (
+			<p>
+				<strong>{group.name}:</strong> {group.keywords.join(', ')}
+			</p>
+		))}
+	</div>
 </Layout>

@@ -1,0 +1,26 @@
+---
+interface Props {
+	company: string;
+	position: string;
+	startDate: string;
+	endDate: string;
+	highlights: string[];
+	isLast?: boolean;
+}
+
+const { company, position, startDate, endDate, highlights, isLast } = Astro.props;
+---
+
+<div class={`relative pl-8 ${!isLast ? 'before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200' : ''}`}>
+	<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
+	<div class="flex flex-col sm:flex-row justify-between items-start mb-1">
+		<h3 class="text-lg font-bold text-slate-900">{company}</h3>
+		<span class="text-sm font-medium text-slate-500">{startDate} — {endDate}</span>
+	</div>
+	<p class="text-sm font-bold text-accent mb-2">{position}</p>
+	<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
+		{highlights.map((item) => (
+			<li set:html={item}></li>
+		))}
+	</ul>
+</div>

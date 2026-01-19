@@ -2,96 +2,28 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import ExperienceItem from '../components/resume/ExperienceItem.astro';
+import SkillGroup from '../components/resume/SkillGroup.astro';
+import { SITE_TITLE } from '../consts';
+import resumeData from '../data/resume.json';
+
+const { basics, work, education, skills } = resumeData;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Resume | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Resume | ${basics.name}`} description={`${basics.name} - ${basics.label} Resume`} />
 		<style>
 			@media print {
-				/* 1. Global Print Reset */
-				header:not(.resume-header), 
-				footer, 
-				.print-hidden {
-					display: none !important;
-				}
-
-				@page {
-					margin: 1.5cm;
-					size: auto;
-				}
-
-				body {
-					background-color: white !important;
-					color: black !important;
-					font-size: 10pt; /* Standard resume font size */
-				}
-
-				/* 2. Container Optimization */
-				main {
-					padding: 0 !important;
-					margin: 0 !important;
-					max-width: none !important;
-					width: 100% !important;
-				}
-
-				.resume-container {
-					box-shadow: none !important;
-					border: none !important;
-					padding: 0 !important;
-					margin: 0 !important;
-					width: 100% !important;
-				}
-
-				/* 3. Header Compression */
-				.resume-header {
-					border-bottom-width: 2px !important;
-					margin-bottom: 1.5rem !important;
-					padding-bottom: 1rem !important;
-				}
-
-				.resume-header h1 {
-					font-size: 24pt !important;
-					margin-bottom: 0 !important;
-				}
-
-				/* 4. Layout & Flow Fixes (Crucial) */
-				section {
-					page-break-inside: auto !important; /* Allow section to split */
-					margin-bottom: 1.5rem !important;
-				}
-
-				/* individual items should not split */
-				.experience-item {
-					page-break-inside: avoid !important;
-					margin-bottom: 1.25rem !important;
-				}
-
-				h2 {
-					border-bottom: 1px solid #eee;
-					padding-bottom: 2px;
-					margin-bottom: 0.75rem !important;
-					page-break-after: avoid;
-				}
-
-				/* 5. Typography */
-				.text-slate-700, .text-slate-600 {
-					color: #333 !important;
-				}
-
-				.text-accent {
-					color: #2337ff !important;
-					font-weight: 600 !important;
-				}
-
-				/* 6. Skills Grid Fix */
-				.skills-edu-grid {
-					display: grid !important;
-					grid-template-columns: 1fr 1fr !important;
-					gap: 2rem !important;
-				}
+				header:not(.resume-header), footer, .print-hidden { display: none !important; }
+				@page { margin: 1.5cm; }
+				body { background-color: white !important; color: black !important; font-size: 10pt; }
+				main { padding: 0 !important; margin: 0 !important; max-width: none !important; width: 100% !important; }
+				.resume-container { box-shadow: none !important; border: none !important; padding: 0 !important; }
+				.resume-header { border-bottom-width: 2px !important; margin-bottom: 1.5rem !important; padding-bottom: 1rem !important; }
+				section { page-break-inside: auto !important; margin-bottom: 1.5rem !important; }
+				.skills-edu-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
 			}
 		</style>
 	</head>
@@ -102,121 +34,32 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<!-- Header -->
 				<header class="resume-header border-b border-slate-200 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
 					<div>
-						<h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">{SITE_TITLE}</h1>
-						<p class="text-xl text-accent font-medium mt-1">Software Engineer</p>
+						<h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">{basics.name}</h1>
+						<p class="text-xl text-accent font-medium mt-1">{basics.label}</p>
 					</div>
 					<div class="text-sm text-slate-600 space-y-1 md:text-right">
-						<p>📍 Bangalore, India</p>
-						<p>📞 (91) 7204477546</p>
-						<p>✉️ <a href="mailto:i.v.harish@gmail.com" class="hover:text-accent">i.v.harish@gmail.com</a></p>
+						<p>📍 {basics.location}</p>
+						<p>📞 {basics.phone}</p>
+						<p>✉️ <a href={`mailto:${basics.email}`} class="hover:text-accent">{basics.email}</a></p>
 					</div>
 				</header>
 
 				<!-- Summary -->
 				<section class="mb-10">
 					<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Summary</h2>
-					<p class="text-slate-700 leading-relaxed">
-						Software developer with 12+ years of experience specializing in backend systems with consistent contributions to frontend and mobile technologies. 
-						Proven track record at companies like Google and Practo, delivering high-impact features for millions of users. 
-						Expertise in building scalable distributed systems, AI-powered applications, and modular business engines.
-					</p>
+					<p class="text-slate-700 leading-relaxed">{basics.summary}</p>
 				</section>
 
 				<!-- Experience -->
 				<section class="mb-10">
 					<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Experience</h2>
-					
 					<div class="space-y-10">
-						<!-- Current -->
-						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-accent ring-4 ring-white print:ring-0"></div>
-							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">Independent Projects</h3>
-								<span class="text-sm font-medium text-slate-500">Aug 2024 — Present</span>
-							</div>
-							<div class="space-y-4">
-								<div>
-									<h4 class="text-sm font-bold text-slate-700">AI Content SaaS App</h4>
-									<p class="text-slate-600 text-sm mt-1 leading-relaxed">Building a content creation platform leveraging advanced AI technologies to automate and enhance digital production workflows.</p>
-								</div>
-								<div>
-									<h4 class="text-sm font-bold text-slate-700">Business Rule Engine</h4>
-									<p class="text-slate-600 text-sm mt-1 leading-relaxed">Developing a modular business rule engine for a post-sales customer success web application, focusing on scalability and flexibility.</p>
-								</div>
-							</div>
-						</div>
-
-						<!-- Google -->
-						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
-							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">Google India</h3>
-								<span class="text-sm font-medium text-slate-500">June 2020 — Aug 2024</span>
-							</div>
-							<p class="text-sm font-bold text-accent mb-2">Software Engineer</p>
-							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
-								<li><strong>Gemini Extensions:</strong> Developed features for Gemini Mobile, focusing on support for new features, performance optimization, and release metrics pipelines.</li>
-								<li><strong>Google Assistant:</strong> Designed and supported features across devices, including Spoken Notifications for headsets and Media Search for 3rd Party TVs. Led app upgrades and refactors for Assistant on Android TV.</li>
-							</ul>
-						</div>
-
-						<!-- Stockopedia -->
-						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
-							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">Stockopedia Technologies</h3>
-								<span class="text-sm font-medium text-slate-500">Nov 2017 — May 2020</span>
-							</div>
-							<p class="text-sm font-bold text-accent mb-2">Senior Software Engineer</p>
-							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
-								<li>Architected and built the backend for the Stockopedia App ground-up using Java and PHP.</li>
-								<li>Developed core modules including StockReports, Portfolios, Alerts, and News.</li>
-								<li>Integrated production applications and set up CI/CD pipelines using TeamCity and Docker.</li>
-							</ul>
-						</div>
-
-						<!-- Practo -->
-						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
-							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">Practo Technologies</h3>
-								<span class="text-sm font-medium text-slate-500">March 2015 — Oct 2017</span>
-							</div>
-							<p class="text-sm font-bold text-accent mb-2">Lead Engineer / Senior Software Engineer</p>
-							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
-								<li>Led the Appointment Booking System backend team, mentoring junior developers.</li>
-								<li>Engineered the Doctor/Hospital calling system with the Virtual Number (VN) team.</li>
-								<li>Managed Appointment payment integrations and Qikwell-Practo system integration.</li>
-							</ul>
-						</div>
-
-						<!-- VIA.com -->
-						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
-							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">VIA.com</h3>
-								<span class="text-sm font-medium text-slate-500">Nov 2013 — June 2014</span>
-							</div>
-							<p class="text-sm font-bold text-accent mb-2">Software Engineer</p>
-							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
-								<li>Integrated third-party APIs for Indonesian flight search, bookings, and payments.</li>
-								<li>Implemented robust web scrapers for real-time search and booking functionalities.</li>
-							</ul>
-						</div>
-
-						<!-- Tavant -->
-						<div class="experience-item relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
-							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white print:ring-0"></div>
-							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
-								<h3 class="text-lg font-bold text-slate-900">Tavant Technologies</h3>
-								<span class="text-sm font-medium text-slate-500">Aug 2012 — Sept 2013</span>
-							</div>
-							<p class="text-sm font-bold text-accent mb-2">Software Engineer</p>
-							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
-								<li>Worked as a Full Stack developer on a Campaign Management system using Spring, Hibernate, and Marionette.js.</li>
-								<li>Designed and implemented both backend and frontend systems from scratch.</li>
-							</ul>
-						</div>
+						{work.map((job, index) => (
+							<ExperienceItem 
+								{...job} 
+								isLast={index === work.length - 1}
+							/>
+						))}
 					</div>
 				</section>
 
@@ -224,23 +67,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<!-- Skills -->
 					<section>
 						<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Skills</h2>
-						<div class="space-y-4">
-							<div>
-								<h4 class="text-xs font-bold text-slate-900 uppercase mb-2">Languages</h4>
-								<div class="flex flex-wrap gap-2">
-									{['Java', 'PHP', 'JavaScript', 'SQL', 'C++', 'Python'].map(skill => (
-										<span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs">{skill}</span>
-									))}
-								</div>
-							</div>
-							<div>
-								<h4 class="text-xs font-bold text-slate-900 uppercase mb-2">Technologies</h4>
-								<div class="flex flex-wrap gap-2">
-									{['Spring', 'Hibernate', 'Symfony', 'React', 'Astro', 'Node.js', 'Tailwind', 'Docker', 'MongoDB', 'Apache Ignite', 'RabbitMQ', 'AWS'].map(skill => (
-										<span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs">{skill}</span>
-									))}
-								</div>
-							</div>
+						<div class="space-y-2">
+							{skills.map(group => <SkillGroup {...group} />)}
 						</div>
 					</section>
 
@@ -248,22 +76,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<section>
 						<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Education</h2>
 						<div class="space-y-6">
-							<div>
-								<h3 class="text-sm font-bold text-slate-900">NIT Calicut</h3>
-								<p class="text-xs text-accent font-medium">M.Tech, Information Security</p>
-								<p class="text-xs text-slate-500">2010 — 2012 | CGPA: 7.2</p>
-							</div>
-							<div>
-								<h3 class="text-sm font-bold text-slate-900">Swarnandhra College of Engg</h3>
-								<p class="text-xs text-accent font-medium">B.Tech, Information Technology</p>
-								<p class="text-xs text-slate-500">2005 — 2009 | 60.3%</p>
-							</div>
+							{education.map(edu => (
+								<div>
+									<h3 class="text-sm font-bold text-slate-900">{edu.institution}</h3>
+									<p class="text-xs text-accent font-medium">{edu.studyType}, {edu.area}</p>
+									<p class="text-xs text-slate-500">{edu.startDate} — {edu.endDate} | {edu.score}</p>
+								</div>
+							))}
 						</div>
 					</section>
 				</div>
 				
 				<!-- Print Action -->
-				<div class="mt-12 pt-8 border-t border-slate-100 text-center print:hidden print-hidden">
+				<div class="mt-12 pt-8 border-t border-slate-100 text-center print:hidden">
 					<button onclick="window.print()" class="text-sm font-bold text-accent hover:text-accent-dark transition-colors inline-flex items-center gap-2">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -273,6 +98,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 			</div>
 		</main>
-		<Footer class="print:hidden" />
+		<Footer />
 	</body>
 </html>
