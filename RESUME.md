@@ -57,8 +57,6 @@ Software developer with 12+ years of experience specializing in backend systems 
 
 **NIT Calicut**  
 *M.Tech in Computer Science (Information Security)* • 2010 — 2012  
-Result: 7.2 CGPA
 
 **Swarnandhra College of Engg and Tech**  
-*B.Tech in Information Technology* • 2005 — 2009  
-Result: 60.3%
+*B.Tech in Information Technology* • 2005 — 2009

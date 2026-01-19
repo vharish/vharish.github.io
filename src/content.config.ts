@@ -36,7 +36,7 @@ const resume = defineCollection({
 			studyType: z.string(),
 			startDate: z.string(),
 			endDate: z.string(),
-			score: z.string(),
+			score: z.string().optional(),
 		})),
 	}),
 });
