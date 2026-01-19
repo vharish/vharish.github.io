@@ -1,0 +1,165 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Resume | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-slate-50 print:bg-white">
+		<Header />
+		<main class="max-w-4xl mx-auto px-4 py-16 print:py-0 print:px-0">
+			<div class="bg-white p-8 sm:p-12 shadow-sm border border-slate-200 rounded-2xl print:shadow-none print:border-none print:p-0">
+				<!-- Header -->
+				<header class="border-b border-slate-200 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+					<div>
+						<h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">{SITE_TITLE}</h1>
+						<p class="text-xl text-accent font-medium mt-1">Software Engineer</p>
+					</div>
+					<div class="text-sm text-slate-600 space-y-1 md:text-right">
+						<p>📍 Nagawara, Bangalore, 560078</p>
+						<p>📞 (91) 7204477546</p>
+						<p>✉️ <a href="mailto:i.v.harish@gmail.com" class="hover:text-accent">i.v.harish@gmail.com</a></p>
+					</div>
+				</header>
+
+				<!-- Summary -->
+				<section class="mb-10">
+					<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Summary</h2>
+					<p class="text-slate-700 leading-relaxed">
+						Software developer with 12+ years of experience specializing in backend systems with consistent contributions to frontend and mobile technologies. 
+						Proven track record at companies like Google and Practo, delivering high-impact features for millions of users. 
+						Expertise in building scalable distributed systems, AI-powered applications, and modular business engines.
+					</p>
+				</section>
+
+				<!-- Experience -->
+				<section class="mb-10">
+					<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Experience</h2>
+					
+					<div class="space-y-10">
+						<!-- Current -->
+						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-accent ring-4 ring-white"></div>
+							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
+								<h3 class="text-lg font-bold text-slate-900">Independent Projects</h3>
+								<span class="text-sm font-medium text-slate-500">Aug 2024 — Present</span>
+							</div>
+							<div class="space-y-4">
+								<div>
+									<h4 class="text-sm font-bold text-slate-700">AI Content SaaS App</h4>
+									<p class="text-slate-600 text-sm mt-1 leading-relaxed">Building a content creation platform leveraging advanced AI technologies to automate and enhance digital production workflows.</p>
+								</div>
+								<div>
+									<h4 class="text-sm font-bold text-slate-700">Business Rule Engine</h4>
+									<p class="text-slate-600 text-sm mt-1 leading-relaxed">Developing a modular business rule engine for a post-sales customer success web application, focusing on scalability and flexibility.</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Google -->
+						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
+								<h3 class="text-lg font-bold text-slate-900">Google India</h3>
+								<span class="text-sm font-medium text-slate-500">June 2020 — Aug 2024</span>
+							</div>
+							<p class="text-sm font-bold text-accent mb-2">Software Engineer</p>
+							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
+								<li><strong>Gemini Extensions:</strong> Developed features for Gemini Mobile, focusing on support for new features, performance optimization, and release metrics pipelines.</li>
+								<li><strong>Google Assistant:</strong> Designed and supported features across devices, including Spoken Notifications for headsets and Media Search for 3rd Party TVs. Led app upgrades and refactors for Assistant on Android TV.</li>
+							</ul>
+						</div>
+
+						<!-- Stockopedia -->
+						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
+								<h3 class="text-lg font-bold text-slate-900">Stockopedia Technologies</h3>
+								<span class="text-sm font-medium text-slate-500">Nov 2017 — May 2020</span>
+							</div>
+							<p class="text-sm font-bold text-accent mb-2">Senior Software Engineer</p>
+							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
+								<li>Architected and built the backend for the Stockopedia App ground-up using Java and PHP.</li>
+								<li>Developed core modules including StockReports, Portfolios, Alerts, and News.</li>
+								<li>Integrated production applications and set up CI/CD pipelines using TeamCity and Docker.</li>
+							</ul>
+						</div>
+
+						<!-- Practo -->
+						<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
+							<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+							<div class="flex flex-col sm:flex-row justify-between items-start mb-2">
+								<h3 class="text-lg font-bold text-slate-900">Practo Technologies</h3>
+								<span class="text-sm font-medium text-slate-500">March 2015 — Oct 2017</span>
+							</div>
+							<p class="text-sm font-bold text-accent mb-2">Lead Engineer / Senior Software Engineer</p>
+							<ul class="text-slate-600 text-sm space-y-2 list-disc ml-4">
+								<li>Led the Appointment Booking System backend team, mentoring junior developers.</li>
+								<li>Engineered the Doctor/Hospital calling system with the Virtual Number (VN) team.</li>
+								<li>Managed Appointment payment integrations and Qikwell-Practo system integration.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+					<!-- Skills -->
+					<section>
+						<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Skills</h2>
+						<div class="space-y-4">
+							<div>
+								<h4 class="text-xs font-bold text-slate-900 uppercase mb-2">Languages</h4>
+								<div class="flex flex-wrap gap-2">
+									{['Java', 'PHP', 'JavaScript', 'SQL', 'C++', 'Python'].map(skill => (
+										<span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs">{skill}</span>
+									))}
+								</div>
+							</div>
+							<div>
+								<h4 class="text-xs font-bold text-slate-900 uppercase mb-2">Technologies</h4>
+								<div class="flex flex-wrap gap-2">
+									{['Spring', 'Hibernate', 'Symfony', 'React', 'Astro', 'Node.js', 'Tailwind', 'Docker', 'MongoDB', 'Apache Ignite', 'RabbitMQ', 'AWS'].map(skill => (
+										<span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs">{skill}</span>
+									))}
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Education -->
+					<section>
+						<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Education</h2>
+						<div class="space-y-6">
+							<div>
+								<h3 class="text-sm font-bold text-slate-900">NIT Calicut</h3>
+								<p class="text-xs text-accent font-medium">M.Tech, Information Security</p>
+								<p class="text-xs text-slate-500">2010 — 2012 | CGPA: 7.2</p>
+							</div>
+							<div>
+								<h3 class="text-sm font-bold text-slate-900">Swarnandhra College of Engg</h3>
+								<p class="text-xs text-accent font-medium">B.Tech, Information Technology</p>
+								<p class="text-xs text-slate-500">2005 — 2009 | 60.3%</p>
+							</div>
+						</div>
+					</section>
+				</div>
+				
+				<!-- Print Action -->
+				<div class="mt-12 pt-8 border-t border-slate-100 text-center print:hidden">
+					<button onclick="window.print()" class="text-sm font-bold text-accent hover:text-accent-dark transition-colors inline-flex items-center gap-2">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+						</svg>
+						Print Resume
+					</button>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
