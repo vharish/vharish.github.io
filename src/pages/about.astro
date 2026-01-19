@@ -1,43 +1,26 @@
 ---
+import { getEntry } from 'astro:content';
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import Layout from '../layouts/BlogPost.astro';
-import resumeData from '../data/resume.json';
 
-const { basics, work, education, skills } = resumeData;
+const resumeEntry = await getEntry('resume', 'me');
+if (!resumeEntry) {
+    return Astro.redirect('/404');
+}
+const { name, summary, education, skills } = resumeEntry.data;
 ---
 
 <Layout
 	title="About Me"
-	description={`Professional background of ${basics.name}`}
+	description={`Professional background of ${name}`}
 	pubDate={new Date('January 19 2026')}
 	heroImage={AboutHeroImage}
 >
-	<p>{basics.summary}</p>
+	<p>{summary}</p>
 
-	<h2>Current Projects</h2>
-	<div class="space-y-6">
-		{work.filter(j => j.endDate === 'Present').map(job => (
-			<div>
-				<h3 class="mb-1">{job.company}</h3>
-				<ul class="list-none pl-0">
-					{job.highlights.map(h => <li class="mb-2 text-slate-600">{h}</li>)}
-				</ul>
-			</div>
-		))}
-	</div>
-
-	<h2>Experience</h2>
-	<div class="space-y-8 mt-8">
-		{work.filter(j => j.endDate !== 'Present').map(job => (
-			<div>
-				<h3 class="mb-0">{job.company}</h3>
-				<p class="text-sm text-slate-500 mt-0">{job.position} | {job.startDate} – {job.endDate}</p>
-				<ul>
-					{job.highlights.map(h => <li set:html={h}></li>)}
-				</ul>
-			</div>
-		))}
-	</div>
+	<p>
+		Please check out my <a href="/cv">detailed CV</a> for my full professional history and experience.
+	</p>
 
 	<h2>Education</h2>
 	<ul>
