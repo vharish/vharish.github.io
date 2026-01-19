@@ -6,6 +6,9 @@ import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const resumeEntry = await getEntry('resume', 'me');
+if (!resumeEntry) {
+	return Astro.redirect('/404');
+}
 const basics = resumeEntry.data;
 ---
 
